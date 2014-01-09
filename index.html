@@ -6,7 +6,7 @@
 <STYLE type="text/css">
 <!--
 BODY {
-	FONT-SIZE: small; COLOR: #000000; FONT-FAMILY: "trebuchet ms", Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #FFFFFF
+	FONT-SIZE: small; COLOR: #000000; FONT-FAMILY: "trebuchet ms", Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #EEEEEE
 }
 
 H1 {
@@ -28,8 +28,14 @@ A:hover {
 </STYLE>
 </HEAD>
 <BODY bgColor="#ffffff" text="#000000">
-<H1 align="center">Kursad's Web Server</H1>
-<hr>
+<div id="container" style="width:100%">
+
+<div id="header">
+<H1 style="margin-bottom:0;" align="center">Kursad's Web Server</H1>
+<hr></div>
+
+
+<div id="links" style="height:100%;width:400px;float:left;">
 <P>
 Personal links:
 </P>
@@ -55,6 +61,11 @@ Documents (TBD):
 </P>
 <A HREF="./docs.php">Documents</A><br>
 <br>
+</DIV>
+<div id="weather" style="height:100%;width:400px;float:right;">
+<script type="text/javascript" src="http://voap.weather.com/weather/oap/27617?template=GENXH&par=3000000007&unit=0&key=twciweatherwidget"></script>
+</div>
+<div id="google" style="clear:both;">
 <form method="get" action="http://www.google.com/search">
 	<div style="border:1px solid black;padding:4px;width:20em;">
 		<table border="0" cellpadding="0">
@@ -65,6 +76,8 @@ Documents (TBD):
 		</table>
 	</div>
 </form>
+</div>
+<div id="footer" style="text-align:center;">
 <CENTER>
 <P CLASS="footer">
 Abyss Web Server - 
@@ -74,4 +87,6 @@ Copyright &#169; 2001-2013 <A HREF="http://www.aprelium.com" >Aprelium</A> - All
 <A HREF="http://www.aprelium.com" ><IMG SRC="pwrabyss.gif" ALT="Powered by Abyss Web Server" TITLE="Powered by Abyss Web Server" BORDER="0" WIDTH="88" HEIGHT="31"></A>
 </P>
 </CENTER>
+</div>
+</div>
 </BODY></HTML>
