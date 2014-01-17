@@ -117,6 +117,7 @@ foreach ($all_files['files'] as $file) {
 	$file = str_replace('\\', '/', $file);
 	$tdir = top_dir($file);
 	$dir = substr($file, strlen(dirname(__FILE__)) , strlen(basename($file)));
+	$dir = substr($file, strlen(dirname(__FILE__)) + 1 , -1 - strlen(basename($file)));
 
 	if (in_array($tdir, $own_links)) {
 		continue;
@@ -130,7 +131,8 @@ foreach ($all_files['files'] as $file) {
 		$descriptor = basename($file);
 	}
 	$lnk = "<a href=\"$link\">[$ext]</a><br>\n";
-	$links[$row] = array($dir, $descriptor, $lnk);
+	$dirlnk = "<a href=\"$dir\">$dir</a>";
+	$links[$row] = array($dirlnk, $descriptor, $lnk);
 	$row++;
 }
 echo '<hr><table>';
