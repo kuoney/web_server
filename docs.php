@@ -168,6 +168,8 @@ foreach ($all_files['files'] as $file) {
 		$p->load($file);
 		$descriptor = $p->title;
 		$date = $p->created;
+	} else if ($ext === "pptx" || $ext === "ppt") {
+		continue;
 	} else {
 		$descriptor = basename($file);
 		$date = "1970-01-01";
