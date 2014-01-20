@@ -12,74 +12,46 @@ class PDFInfo
 	public $title;
 	public $created;
 	public $rev;
-	public $pages;
+
+	private function get_field($string, $field)
+	{
+		$begin = "<" . $field . ">";
+		$end = "</" . $field . ">";
+		$start = strpos($string, $begin) + strlen($begin);
+		// well... some of our documents have this twice...
+		if ($start !== false) {
+			$start2 = strpos($string, $begin, $start) + strlen($begin);
+
+			if (($start2 !== false) and ($start2 > $start)) {
+					$start = $start2;
+			}
+			$length = strpos(substr($string, $start), $end);
+
+			if ($length) {
+				$retval = strip_tags(substr($string, $start, $length));
+				$retval = trim($this->pdfDecTxt($retval));
+				return $retval;
+			}
+			return false;
+		}
+		return false;
+	}
 
 	public function load($filename)
 	{
 		$string = file_get_contents($filename);
 
-		$start = strpos($string, "<dc:title>") + 10;
-		// well... some of our documents have this twice...
-		$start2 = strpos($string, "<dc:title>", $start) + 10;
-
-		if (($start2 !== false) and ($start2 > $start)) {
-				$start = $start2;
-		}
-		$length = strpos(substr($string, $start), '</dc:title>');
-
-		$this->title = '[Untitled] ' . basename($filename);
-		if ($length)
-		{
-			$this->title = strip_tags(substr($string, $start, $length));
-			$this->title = trim($this->pdfDecTxt($this->title));
+		if (($this->title = $this->get_field($string, "dc:title")) === false) {
+		   $this->title	= '[Untitled] ' . basename($filename);
 		}
 
-		$start = strpos($string, "<xap:CreateDate>") + 16;
-		// well... some of our documents have this twice...
-		$start2 = strpos($string, "<xap:CreateDate>", $start) + 16;
-
-		if (($start2 !== false) and ($start2 > $start)) {
-				$start = $start2;
+		if (($this->created = $this->get_field($string, "xap:ModifyDate")) === false) {
+			$this->created = "1970-01-01";
 		}
-		$length = strpos(substr($string, $start), '</xap:CreateDate>');
+		$this->created = reset(split('T', $this->created, -1));
 
-		$this->created = "1970-01-01";
-		if ($length)
-		{
-			$this->created = strip_tags(substr($string, $start, $length));
-			$this->created = trim($this->pdfDecTxt($this->created));
-			$this->created = reset(split('T', $this->created, -1));
-		}
-
-		$start = strpos($string, "<dc:creator>") + 12;
-		$start2 = strpos($string, "<dc:creator>", $start) + 12;
-
-		if (($start2 !== false) and ($start2 > $start)) {
-				$start = $start2;
-		}
-		$length = strpos(substr($string, $start), '</dc:creator>');
-		$this->author = 'Unknown';
-
-		if ($length)
-		{
-			$this->author = strip_tags(substr($string, $start, $length));
-			$this->author = trim($this->pdfDecTxt($this->author));
-		}
-
-		if (preg_match("/\/N\s+([0-9]+)/", $string, $found))
-		{
-			$this->pages = $found[1];
-		}
-		else
-		{
-			$pos = strpos($string, '/Type /Pages ');
-			if ($pos !== false)
-			{
-				$pos2 = strpos($string, '>>', $pos);
-				$string = substr($string, $pos, $pos2 - $pos);
-				$pos = strpos($string, '/Count ');
-				$this->pages = (int) substr($string, $pos+7);
-			}
+		if (($this->author = $this->get_field($string, "dc:creator")) === false) {
+			$this->author = 'Unknown';
 		}
 		$data;
 	}
