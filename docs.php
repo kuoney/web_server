@@ -125,14 +125,6 @@ function read_all_files($root = '.') {
 	return $files;
 }
 
-function get_descriptor($f)
-{
-	$p = new PDFInfo;
-	$p->load($f);
-	return "$p->title ";
-
-}
-
 function top_dir($f)
 {
 	$d = substr($f, strlen(dirname(__FILE__)) + strlen("docs/") + 1 , -1 - strlen(basename($f)));
@@ -172,22 +164,27 @@ foreach ($all_files['files'] as $file) {
 	$ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
 	if ($ext === "pdf") {
-		$descriptor = get_descriptor($file);
+		$p = new PDFInfo;
+		$p->load($file);
+		$descriptor = $p->title;
+		$date = $p->created;
 	} else {
 		$descriptor = basename($file);
+		$date = "1970-01-01";
 	}
 	$lnk = "<a href=\"$link\">[$ext]</a><br>\n";
 	$dirlnk = "<a href=\"$dir\">$dir</a>";
-	$links[$row] = array($dirlnk, $descriptor, $lnk);
+	$links[$row] = array($dirlnk, $descriptor, $lnk, $date);
 	$row++;
 }
 echo '<hr><table class="gradienttable">';
 
-echo '<th> Link </th><th>Description</th><th>Directory</th>';
+echo '<th> Link </th><th>Description</th><th>Date</th><th>Directory</th>';
 foreach($links as $entry => $el) {
 	echo '<tr>';
 	echo '<td>', $el[2], '</td>
 			<td>', $el[1], '</td>
+			<td>', $el[3], '</td>
 			<td>', $el[0], '</td>';
 	echo '</tr>';
 }

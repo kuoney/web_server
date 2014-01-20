@@ -10,12 +10,14 @@ class PDFInfo
 {
 	public $author;
 	public $title;
+	public $created;
+	public $rev;
 	public $pages;
-	
+
 	public function load($filename)
 	{
 		$string = file_get_contents($filename);
-		
+
 		$start = strpos($string, "<dc:title>") + 10;
 		// well... some of our documents have this twice...
 		$start2 = strpos($string, "<dc:title>", $start) + 10;
@@ -26,12 +28,29 @@ class PDFInfo
 		$length = strpos(substr($string, $start), '</dc:title>');
 
 		$this->title = '[Untitled] ' . basename($filename);
-		if ($length) 
+		if ($length)
 		{
 			$this->title = strip_tags(substr($string, $start, $length));
 			$this->title = trim($this->pdfDecTxt($this->title));
 		}
-		
+
+		$start = strpos($string, "<xap:CreateDate>") + 16;
+		// well... some of our documents have this twice...
+		$start2 = strpos($string, "<xap:CreateDate>", $start) + 16;
+
+		if (($start2 !== false) and ($start2 > $start)) {
+				$start = $start2;
+		}
+		$length = strpos(substr($string, $start), '</xap:CreateDate>');
+
+		$this->created = "1970-01-01";
+		if ($length)
+		{
+			$this->created = strip_tags(substr($string, $start, $length));
+			$this->created = trim($this->pdfDecTxt($this->created));
+			$this->created = reset(split('T', $this->created, -1));
+		}
+
 		$start = strpos($string, "<dc:creator>") + 12;
 		$start2 = strpos($string, "<dc:creator>", $start) + 12;
 
@@ -40,16 +59,16 @@ class PDFInfo
 		}
 		$length = strpos(substr($string, $start), '</dc:creator>');
 		$this->author = 'Unknown';
-		
-		if ($length) 
+
+		if ($length)
 		{
 			$this->author = strip_tags(substr($string, $start, $length));
 			$this->author = trim($this->pdfDecTxt($this->author));
 		}
-		
+
 		if (preg_match("/\/N\s+([0-9]+)/", $string, $found))
 		{
-			$this->pages = $found[1]; 
+			$this->pages = $found[1];
 		}
 		else
 		{
@@ -64,7 +83,7 @@ class PDFInfo
 		}
 		$data;
 	}
-		
+
 	private function pdfDecTxt($txt)
 	{
 		$len = strlen($txt);
@@ -75,7 +94,7 @@ class PDFInfo
 			if ($txt[$i] == '\\')
 			{
 				$out .= chr(octdec(substr($txt, $i+1, 3)));
-				$i += 4;			
+				$i += 4;
 			}
 			else
 			{
@@ -83,7 +102,7 @@ class PDFInfo
 				$i++;
 			}
 		}
-		
+
 		if ($out[0] == chr(254))
 		{
 			$enc = 'UTF-16';
