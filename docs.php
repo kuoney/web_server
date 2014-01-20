@@ -41,7 +41,7 @@ table.gradienttable {
 	border-collapse: collapse;
 }
 table.gradienttable th {
-	padding: 0px;
+	padding: 4px;
 	background: #d5e3e4;
 	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Q1ZTNlNCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjQwJSIgc3RvcC1jb2xvcj0iI2NjZGVlMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNiM2M4Y2MiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
 	background: -moz-linear-gradient(top,  #d5e3e4 0%, #ccdee0 40%, #b3c8cc 100%);
@@ -66,7 +66,7 @@ table.gradienttable td {
 }
 table.gradienttable th p{
 	margin:0px;
-	padding:8px;
+	padding:0px;
 	border-top: 1px solid #eefafc;
 	border-bottom:0px;
 	border-left: 1px solid #eefafc;
@@ -74,11 +74,12 @@ table.gradienttable th p{
 }
 table.gradienttable td p{
 	margin:0px;
-	padding:8px;
+	padding-right:4px;
+	padding-left:2px;
 	border-top: 1px solid #fcfdec;
 	border-bottom:0px;
 	border-left: 1px solid #fcfdec;;
-	border-right:0px;
+	border-right:1px;
 }
 </STYLE>
 <body>
@@ -184,10 +185,10 @@ echo '<hr><table class="gradienttable">';
 echo '<th> Link </th><th>Description</th><th>Date</th><th>Directory</th>';
 foreach($links as $entry => $el) {
 	echo '<tr>';
-	echo '<td>', $el[2], '</td>
-			<td>', $el[1], '</td>
-			<td>', $el[3], '</td>
-			<td>', $el[0], '</td>';
+	echo '<td><p>', $el[2], '</p></td>
+			<td><p>', $el[1], '</p></td>
+			<td><p>', $el[3], '</p></td>
+			<td><p>', $el[0], '</p></td>';
 	echo '</tr>';
 }
 echo '</table>';
