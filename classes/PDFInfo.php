@@ -39,6 +39,7 @@ class PDFInfo
 
 	public function load($filename)
 	{
+		ini_set('memory_limit', '256M');
 		$string = file_get_contents($filename);
 
 		if (($this->title = $this->get_field($string, "dc:title")) === false) {
@@ -75,7 +76,7 @@ class PDFInfo
 			}
 		}
 
-		if ($out[0] == chr(254))
+		if (!empty($out) && $out[0] == chr(254))
 		{
 			$enc = 'UTF-16';
 		}
