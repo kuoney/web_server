@@ -42,9 +42,24 @@ function read_all_files($root = '.') {
 
 function top_dir($f)
 {
-	$d = substr($f, strlen(dirname(__FILE__)) + strlen("docs/") + 1 , -1 - strlen(basename($f)));
-	$d = substr($d, 0, strpos($d, '/'));
+	$d = dirname($f);
+	$d = substr($d, strrpos($d, '/') + 1);
 	return $d;
+}
+
+function pdf_element($el, $dat)
+{
+	// Look for "$el<spaces>:$value" and return $value
+	foreach($dat as &$output) {
+		$re1="($el)";	# Word 1
+		$re2='(\\s+)';	# White Space 1
+		$re3='(:)';	# Any Single Character 1
+		$re4='(\\s+)';	# White Space 2
+		$re5='(.*)';	# Variable Name 1
+		if (preg_match("/".$re1.$re2.$re3.$re4.$re5."/is", $output, $matches)) {
+			return $matches[5];
+		}
+	}
 }
 
 function print_table($cur_dir = "/docs/", $exclude_dirs = array()) {
@@ -72,23 +87,19 @@ function print_table($cur_dir = "/docs/", $exclude_dirs = array()) {
 		$dir = substr($file, strlen(dirname(__FILE__)) , strlen(basename($file)));
 		$dir = substr($file, strlen(dirname(__FILE__)) + 1 , -1 - strlen(basename($file)));
 
-		if (in_array($tdir, $own_links)) {
+		if (in_array($tdir, $own_links))
 			continue;
-		}
+
 		$link = substr($file, strlen(dirname(__FILE__)));
 		$ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
-		if ($ext === "pdf") {
-			$p = new PDFInfo;
-			$p->load($file);
-			$descriptor = $p->title;
-			$date = $p->created;
-		} else if ($ext === "pptx" || $ext === "ppt") {
+		$data = array();
+		exec ("exiftool.exe \"$file\"", $data);
+		$descriptor = pdf_element("Title", $data);
+		$date = pdf_element("Create Date", $data);
+
+		if ($ext === "pptx" || $ext === "ppt")
 			continue;
-		} else {
-			$descriptor = basename($file);
-			$date = "1970-01-01";
-		}
 		$lnk = "<a href=\"$link\">[$ext]</a><br>\n";
 		$dirlnk = "<a href=\"$dir\">$dir</a>";
 		$links[$row] = array($dirlnk, $descriptor, $lnk, $date);

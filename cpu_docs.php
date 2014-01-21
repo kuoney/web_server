@@ -6,9 +6,8 @@
 <META http-equiv="Content-Type" content="text/html; charset=iso 8859-1">
 <body>
 <?php
-include_once './classes/PDFInfo.php';
 include_once './docs_common.php';
 
-print_table("/docs/cpu_docs/", array());
+print_table("/docs/cpu_docs/", array("rm_ds_err_ug"));
 ?>
 </body></html>
