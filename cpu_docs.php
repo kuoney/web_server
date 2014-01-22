@@ -8,6 +8,6 @@
 <?php
 include_once './docs_common.php';
 
-print_table("/docs/cpu_docs/", array("rm_ds_err_ug"));
+print_table("/docs/cpu_docs/", array());
 ?>
 </body></html>

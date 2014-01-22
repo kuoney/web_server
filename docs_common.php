@@ -66,33 +66,36 @@ function print_table($cur_dir = "/docs/", $exclude_dirs = array()) {
 		echo "<a href=\"$link\"> Directory: " . basename($dir) . "</a><br>\n";
 	}
 
-	$row = 0;
-	foreach ($all_files['files'] as $file) {
+	foreach ($all_files['files'] as $i => $file) {
 		$file = str_replace('\\', '/', $file);
 		$tdir = top_dir($cur_dir, $file);
-		$dir = substr($file, strlen(dirname(__FILE__)) , strlen(basename($file)));
-		$dir = substr($file, strlen(dirname(__FILE__)) + 1 , -1 - strlen(basename($file)));
-
-		if (in_array($tdir, $own_links))
-			continue;
-
-		$link = substr($file, strlen(dirname(__FILE__)));
 		$ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
-		$filedata = array();
-		eval('$filedata = ' . `exiftool.exe -CreateDate -Title -n -e -php "$file"`);
-		$descriptor = $filedata[0]["Title"];
-		$date = $filedata[0]["CreateDate"];
-
-		if ($ext === "pptx" || $ext === "ppt")
+		if (in_array($tdir, $own_links) || ($ext === "pptx" || $ext === "ppt")) {
+			unset($all_files['files'][$i]);
 			continue;
+		}
+	}
+	$files_str = implode("\" \"", $all_files['files']);
+	$files_str = "\"" . $files_str . "\"";
+	eval('$filedata = ' . `exiftool.exe -CreateDate -Title -n -e -php $files_str`);
+
+	foreach ($filedata as $i => $filex) {
+		$link = $filex["SourceFile"];
+		$link = substr($link, strpos($link, $cur_dir));
+		$descriptor = $filex["Title"];
+		$date = $filex["CreateDate"];
+		$ext = strtolower(pathinfo($link, PATHINFO_EXTENSION));
 		$lnk = "<a href=\"$link\">[$ext]</a><br>\n";
+
+		$dir = substr($link, 0, - strlen(basename($link)));
 		$dirlnk = "<a href=\"$dir\">$dir</a>";
+
 		$detailslnk = "details.php?file=." . urlencode($link);
 		$details = "<a href=\"$detailslnk\">Details</a>";
-		$links[$row] = array($dirlnk, $descriptor, $lnk, $date, $details);
-		$row++;
+		$links[$i] = array($dirlnk, $descriptor, $lnk, $date, $details);
 	}
+
 	echo '<hr><table class="gradienttable">';
 
 	echo '<th> Link </th><th>Description</th><th>Date</th><th>Directory</th><th>Details</th>';
