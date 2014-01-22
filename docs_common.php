@@ -40,10 +40,11 @@ function read_all_files($root = '.') {
 	return $files;
 }
 
-function top_dir($f)
+function top_dir($cdir, $f)
 {
-	$d = dirname($f);
-	$d = substr($d, strrpos($d, '/') + 1);
+	$tmp = strpos($f, $cdir);
+	$d = substr($f, $tmp + strlen($cdir));
+	$d = substr($d, 0, strpos($d, '/'));
 	return $d;
 }
 
@@ -83,7 +84,7 @@ function print_table($cur_dir = "/docs/", $exclude_dirs = array()) {
 	$row = 0;
 	foreach ($all_files['files'] as $file) {
 		$file = str_replace('\\', '/', $file);
-		$tdir = top_dir($file);
+		$tdir = top_dir($cur_dir, $file);
 		$dir = substr($file, strlen(dirname(__FILE__)) , strlen(basename($file)));
 		$dir = substr($file, strlen(dirname(__FILE__)) + 1 , -1 - strlen(basename($file)));
 
@@ -102,18 +103,21 @@ function print_table($cur_dir = "/docs/", $exclude_dirs = array()) {
 			continue;
 		$lnk = "<a href=\"$link\">[$ext]</a><br>\n";
 		$dirlnk = "<a href=\"$dir\">$dir</a>";
-		$links[$row] = array($dirlnk, $descriptor, $lnk, $date);
+		$detailslnk = "details.php?file=." . urlencode($link);
+		$details = "<a href=\"$detailslnk\">Details</a>";
+		$links[$row] = array($dirlnk, $descriptor, $lnk, $date, $details);
 		$row++;
 	}
 	echo '<hr><table class="gradienttable">';
 
-	echo '<th> Link </th><th>Description</th><th>Date</th><th>Directory</th>';
+	echo '<th> Link </th><th>Description</th><th>Date</th><th>Directory</th><th>Details</th>';
 	foreach($links as $entry => $el) {
 		echo '<tr>';
 		echo '<td><p>', $el[2], '</p></td>
 				<td><p>', $el[1], '</p></td>
 				<td><p>', $el[3], '</p></td>
-				<td><p>', $el[0], '</p></td>';
+				<td><p>', $el[0], '</p></td>
+				<td><p>', $el[4], '</p></td>';
 		echo '</tr>';
 	}
 	echo '</table>';
