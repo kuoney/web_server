@@ -96,9 +96,10 @@ function print_table($cur_dir = "/docs/", $exclude_dirs = array()) {
 		$links[$i] = array($dirlnk, $descriptor, $lnk, $date, $details);
 	}
 
-	echo '<hr><table class="gradienttable">';
+	echo '<hr><table id="links" class="gradienttable tablesorter"><thead>';
 
-	echo '<th> Link </th><th>Description</th><th>Date</th><th>Directory</th><th>Details</th>';
+	echo '<th> Link </th><th>Description</th><th>Date</th><th>Directory</th>',
+		'<th>Details</th></thead><tbody>';
 	foreach($links as $entry => $el) {
 		echo '<tr>';
 		echo '<td><p>', $el[2], '</p></td>
@@ -108,6 +109,15 @@ function print_table($cur_dir = "/docs/", $exclude_dirs = array()) {
 				<td><p>', $el[4], '</p></td>';
 		echo '</tr>';
 	}
-	echo '</table>';
+	echo '</tbody></table>';
 }
 ?>
+<script type="text/javascript" src="tablesorter/jquery-latest.js"></script>
+<script type="text/javascript" src="tablesorter/jquery.tablesorter.js"></script>
+<script>
+$(document).ready(function()
+	{
+		$("#links").tablesorter();
+	}
+);
+</script>
