@@ -8,10 +8,10 @@
 <?php
 	$file = rawurldecode($_GET["file"]);
 	$data = array();
-	exec ("exiftool.exe \"$file\"", $data);
+	exec ("exiftool.exe -h \"$file\"", $data);
 	echo "<p>";
 	foreach($data as $line) {
-		echo "$line", "<br>";
+		echo "$line";
 	}
 	echo "</p>";
 ?>

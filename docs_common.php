@@ -95,7 +95,7 @@ function print_table($cur_dir = "/docs/", $exclude_dirs = array()) {
 		$ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
 		$data = array();
-		exec ("exiftool.exe \"$file\"", $data);
+		exec ("exiftool.exe -CreateDate -Title -n -e \"$file\"", $data);
 		$descriptor = pdf_element("Title", $data);
 		$date = pdf_element("Create Date", $data);
 
