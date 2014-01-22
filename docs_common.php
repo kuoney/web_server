@@ -48,21 +48,6 @@ function top_dir($cdir, $f)
 	return $d;
 }
 
-function pdf_element($el, $dat)
-{
-	// Look for "$el<spaces>:$value" and return $value
-	foreach($dat as &$output) {
-		$re1="($el)";	# Word 1
-		$re2='(\\s+)';	# White Space 1
-		$re3='(:)';	# Any Single Character 1
-		$re4='(\\s+)';	# White Space 2
-		$re5='(.*)';	# Variable Name 1
-		if (preg_match("/".$re1.$re2.$re3.$re4.$re5."/is", $output, $matches)) {
-			return $matches[5];
-		}
-	}
-}
-
 function print_table($cur_dir = "/docs/", $exclude_dirs = array()) {
 	echo "<p>";
 	echo "<p><a href=\"./index.html\">Back to Index</a></p>";
@@ -94,10 +79,10 @@ function print_table($cur_dir = "/docs/", $exclude_dirs = array()) {
 		$link = substr($file, strlen(dirname(__FILE__)));
 		$ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
-		$data = array();
-		exec ("exiftool.exe -CreateDate -Title -n -e \"$file\"", $data);
-		$descriptor = pdf_element("Title", $data);
-		$date = pdf_element("Create Date", $data);
+		$filedata = array();
+		eval('$filedata = ' . `exiftool.exe -CreateDate -Title -n -e -php "$file"`);
+		$descriptor = $filedata[0]["Title"];
+		$date = $filedata[0]["CreateDate"];
 
 		if ($ext === "pptx" || $ext === "ppt")
 			continue;
