@@ -78,7 +78,7 @@ function print_table($cur_dir = "/docs/", $exclude_dirs = array()) {
 	}
 	$files_str = implode("\" \"", $all_files['files']);
 	$files_str = "\"" . $files_str . "\"";
-	eval('$filedata = ' . `exiftool.exe -CreateDate -Title -n -e -php $files_str`);
+	eval('$filedata = ' . `exiftool.exe -f -CreateDate -Title -n -e -php $files_str`);
 
 	foreach ($filedata as $i => $filex) {
 		$link = $filex["SourceFile"];
