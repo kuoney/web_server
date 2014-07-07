@@ -71,14 +71,17 @@ function print_table($cur_dir = "/docs/", $exclude_dirs = array()) {
 		$tdir = top_dir($cur_dir, $file);
 		$ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
-		if (in_array($tdir, $own_links) || ($ext === "pptx" || $ext === "ppt")) {
+		// The extensions we don't care about go in here.
+		$excludes = array("html", "", "jpg", "gz", "axf", "txt", "list", "ppt", "pptx");
+
+		if (in_array($tdir, $own_links) || in_array($ext, $excludes) || (strpos($file, "doxygen"))) {
 			unset($all_files['files'][$i]);
 			continue;
 		}
 	}
 	$files_str = implode("\" \"", $all_files['files']);
 	$files_str = "\"" . $files_str . "\"";
-	eval('$filedata = ' . `exiftool.exe -f -CreateDate -Title -n -e -php $files_str`);
+	eval('$filedata = ' . `exiftool.exe -m -f -CreateDate -Title -n -e -php $files_str`);
 
 	foreach ($filedata as $i => $filex) {
 		$link = $filex["SourceFile"];
