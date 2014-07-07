@@ -52,7 +52,6 @@ function print_table($cur_dir = "/docs/", $exclude_dirs = array()) {
 	echo "<p>";
 	echo "<p><a href=\"./index.html\">Back to Index</a></p>";
 	echo "</p>";
-	echo "<p>Reference Manuals</p>";
 
 	$own_links = $exclude_dirs;
 
