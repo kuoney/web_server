@@ -8,6 +8,6 @@
 <?php
 include_once './docs_common.php';
 
-print_table("/docs/", array("cpu_docs", "app_notes"));
+print_table("/docs/", array("cpu_docs", "app_notes", "bsp_docs"));
 ?>
 </body></html>
