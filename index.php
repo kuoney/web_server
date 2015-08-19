@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><HTML><HEAD>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso 8859-1">
@@ -61,7 +61,7 @@
 </style>
 	<p class="footer"> Abyss Web Server - Copyright &#169; 2001-2013 <A HREF="http://www.aprelium.com" >Aprelium</A> - All rights reserved </p>
 	<p class="footer">
-		<a href="http://www.aprelium.com" ><img src="pwrabyss.gif" title="Powered by Abyss Web Server" border="0" width="88" height="31"></a>
+		<a href="http://www.aprelium.com" ><img src="tools/pwrabyss.gif" title="Powered by Abyss Web Server" border="0" width="88" height="31"></a>
 	</p>
 </div>
 </body></html>
