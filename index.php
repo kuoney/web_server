@@ -7,7 +7,12 @@
 </head>
 
 <body>
-<!-- Our first div is the links section. This contains links to commonly used
+<!-- First the header -->
+<div id="header">
+	<h1 style="margin-bottom:0;" align="center">Freescale FAE's Web Server</h1> <hr>
+</div>
+
+<!-- Our second div is the links section. This contains links to commonly used
      stuff as well as the directory structure -->
 <div id="links" style="height:100%;width:400px;float:left;">
 	<p> Personal links: </p>
@@ -30,7 +35,7 @@
 	<p> Documents: </p>
 </div>
 
-<!-- Our second div is for the weather. We need to reset the style here for the
+<!-- Our final div is for the weather. We need to reset the style here for the
      weather widget since the default CSS makes it look ugly with borders. -->
 <div id="weather" style="height:100%;width:400px;float:right;">
 	<style type="text/css">
@@ -41,5 +46,22 @@
 	}
 	</style>
 	<script type="text/javascript" src="http://voap.weather.com/weather/oap/27617?template=GENXH&par=3000000007&unit=0&key=twciweatherwidget"></script>
+</div>
+
+<!-- Our last div is the footer. Let's give credit to the nice people from Aprelium -->
+<div id="footer" align="center">
+<!-- Put this div to the bottom and hard align it to the center of the 100% width of the browser -->
+<style type="text/css">
+#footer {
+	position : absolute;
+	bottom : 0;
+	width: 100%;
+	text-align : center;
+}
+</style>
+	<p class="footer"> Abyss Web Server - Copyright &#169; 2001-2013 <A HREF="http://www.aprelium.com" >Aprelium</A> - All rights reserved </p>
+	<p class="footer">
+		<a href="http://www.aprelium.com" ><img src="pwrabyss.gif" title="Powered by Abyss Web Server" border="0" width="88" height="31"></a>
+	</p>
 </div>
 </body></html>
