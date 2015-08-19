@@ -33,6 +33,9 @@
 	<a href="http://10.0.0.1">Linksys Router</A><br>
 
 	<p> Documents: </p>
+	<?php
+		include 'php/main.php';
+	?>
 </div>
 
 <!-- Our final div is for the weather. We need to reset the style here for the
