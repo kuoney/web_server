@@ -14,8 +14,7 @@ function update_db ($path, $db )
 		$fn = basename($path);
 		$dir = dirname($path);
 
-		/*
-		 * Run exiftool to get the description and the date from
+		/* Run exiftool to get the description and the date from
 		 * metadata
 		 */
 		$cmd = '"' . $GLOBALS["TOPDIR"] . 'tools/exiftool.exe"' . " -m -f -CreateDate -Title -n -e -php \"$path\"";
@@ -25,14 +24,23 @@ function update_db ($path, $db )
 		$desc = 0;
 		foreach ($filedata as $i => $filex) {
 			$desc = $filex["Title"];
-			$desc = str_replace("'", "", $desc);
 			$date = $filex["CreateDate"];
 		}
+
+		/* In sqlite, single quotes are escaped with double single
+		 * quotes
+		 */
+		$desc = str_replace("'", "", $desc);
+		$path = str_replace("'", "''", $path);
+		$dir = str_replace("'", "''", $dir);
+		$fn = str_replace("'", "''", $fn);
+		$link = str_replace("'", "''", $link);
 
 		$ret = $db->exec("insert into documents values ('$link', '$path', '$dir', '$fn',
 				'$desc', '$date', '$sha1')");
 		if (!$ret)
-			print "<p> XXX $desc $date $path </p>";
+			print "<p> Err: $desc $date $path </p>";
+
 		return 1;
 	}
 	return 0;
