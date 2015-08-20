@@ -37,12 +37,13 @@ function update_db ($path, $db )
 		$link = str_replace("'", "''", $link);
 
 		$ret = $db->exec("insert into documents values ('$link', '$path', '$dir', '$fn',
-				'$desc', '$date', '$sha1')");
+				'$desc', '$date', '$sha1', '1')");
 		if (!$ret)
 			print "<p> Err: $desc $date $path </p>";
 
 		return 1;
 	}
+	$db->exec("update documents set valid=\"1\" where checksum='$sha1'");
 	return 0;
 }
 
@@ -66,32 +67,27 @@ function update ($dir, $db)
 	return $updated;
 }
 
+function cleanup($db)
+{
+	$db->exec('delete from documents where valid="0"');
+	$db->exec("update documents set valid='0' where valid='1'");
+}
+
 function main ()
 {
 	$db = new SQLite3($GLOBALS["TOPDIR"] . 'db/docs.db');
 
 	/* Create the table if it doesn't exist */
 	$db->exec('create table if not exists documents(
-			link, path, dir, fn, description, date, checksum)');
+			link, path, dir, fn, description, date, checksum, valid)');
 
 	$count = update($GLOBALS["TOPDIR"] . 'docs', $db);
+	print("<p>Updated $count files.</p>\n");
 
-	echo '<hr><table id="links" class="gradienttable"><thead>';
+	cleanup($db);
 
-	echo '<th> Link </th><th>Path</th><th>dir</th><th>filename</th><th>Description</th><th>Date</th><th>Checksum</th>',
-		'</thead><tbody>';
-	$results = $db->query('select * from documents');
-
-	while ($row = $results->fetchArray(SQLITE3_NUM)) {
-		echo ('<tr>');
-		foreach ($row as $cell) {
-			echo('<td>' . $cell . '</td>');
-		}
-		echo ('</tr>');
-	}
 	$db->close();
 
-	print("<p>Done. Updated $count files.</p>\n");
 }
 
 $TOPDIR = dirname(dirname(__FILE__)) . '/';
