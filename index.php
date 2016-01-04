@@ -31,6 +31,7 @@
 	<p> Home Network: </p>
 	<a href="http://192.168.0.1">TWC Router</A><br>
 	<a href="http://10.0.0.1">Linksys Router</A><br>
+	<a href="http://192.168.0.20">HP Printer</A><br>
 
 	<p> Documents: </p>
 	<?php
