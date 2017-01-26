@@ -29,8 +29,9 @@
 	<a href="http://git.freescale.com/git/cgit.cgi/imx/uboot-imx.git/">Freescale u-boot Git</a><br>
 
 	<p> Home Network: </p>
-	<a href="http://192.168.0.1">TWC Router</A><br>
-	<a href="http://10.0.0.1">Linksys Router</A><br>
+	<a href="http://192.168.0.1">Netgear Router</A><br>
+	<a href="http://192.168.0.254">TP-Link Access Point</A><br>
+	<a href="http://192.168.168.100">Linksys Router</A><br>
 	<a href="http://192.168.0.24">Brother Printer</A><br>
 	<a href="http://192.168.0.20">HP Printer</A><br>
 	<a href="http://192.168.0.31">Web Remote</A><br>
