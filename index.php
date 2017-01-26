@@ -25,7 +25,7 @@
 
 	<p> Professional links: </p>
 	<a href="http://community.freescale.com">Freescale Community</a><br>
-	<a href="http://git.freescale.com/git/cgit.cgi/imx/linux-2.6-imx.git/">Freescale Linux Git</a><br>
+	<a href="http://git.freescale.com/git/cgit.cgi/imx/linux-imx.git/">Freescale Linux Git</a><br>
 	<a href="http://git.freescale.com/git/cgit.cgi/imx/uboot-imx.git/">Freescale u-boot Git</a><br>
 
 	<p> Home Network: </p>
@@ -66,8 +66,5 @@
 }
 </style>
 	<p class="footer"> Abyss Web Server - Copyright &#169; 2001-2013 <A HREF="http://www.aprelium.com" >Aprelium</A> - All rights reserved </p>
-	<p class="footer">
-		<a href="http://www.aprelium.com" ><img src="tools/pwrabyss.gif" title="Powered by Abyss Web Server" border="0" width="88" height="31"></a>
-	</p>
 </div>
 </body></html>
