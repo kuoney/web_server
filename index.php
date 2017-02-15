@@ -9,7 +9,7 @@
 <body>
 <!-- First the header -->
 <div id="header">
-	<h1 style="margin-bottom:0;" align="center">Freescale FAE's Web Server</h1> <hr>
+	<h1 style="margin-bottom:0;" align="center">Kursad Oney's Web Server</h1> <hr>
 </div>
 
 <!-- Our second div is the links section. This contains links to commonly used
@@ -24,7 +24,7 @@
 	<a href="http://www.pandora.com">Pandora</a><br>
 
 	<p> Professional links: </p>
-	<a href="http://community.freescale.com">Freescale Community</a><br>
+	<a href="http://community.nxp.com">NXP Community</a><br>
 	<a href="http://git.freescale.com/git/cgit.cgi/imx/linux-imx.git/">Freescale Linux Git</a><br>
 	<a href="http://git.freescale.com/git/cgit.cgi/imx/uboot-imx.git/">Freescale u-boot Git</a><br>
 
