@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso 8859-1">
-<title>Kursad Oney's Web Server Powered by Abyss</title>
+<title>Home</title>
 <link rel="stylesheet" type="text/css" href="docs.css">
 </head>
 
