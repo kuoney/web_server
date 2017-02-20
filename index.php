@@ -2,14 +2,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso 8859-1">
-<title>FAE Documents Web Server Powered by Abyss</title>
+<title>Kursad Oney's Web Server Powered by Abyss</title>
 <link rel="stylesheet" type="text/css" href="docs.css">
 </head>
 
 <body>
 <!-- First the header -->
 <div id="header">
-	<h1 style="margin-bottom:0;" align="center">Kursad Oney's Web Server</h1> <hr>
+	<h1 style="margin-bottom:0;" align="center">Home</h1> <hr>
 </div>
 
 <!-- Our second div is the links section. This contains links to commonly used
