@@ -52,7 +52,7 @@
 		border: 0;
 	}
 	</style>
-	<script type="text/javascript" src="http://voap.weather.com/weather/oap/27617?template=GENXH&par=3000000007&unit=0&key=twciweatherwidget"></script>
+	<iframe style="display: block;" src="//cdnres.willyweather.com/widget/loadView.html?id=67373" width="199" height="82" frameborder="0" scrolling="no"></iframe>
 </div>
 
 <!-- Our last div is the footer. Let's give credit to the nice people from Aprelium -->
