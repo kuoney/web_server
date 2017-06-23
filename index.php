@@ -16,12 +16,12 @@
      stuff as well as the directory structure -->
 <div id="links" style="height:100%;width:400px;float:left;">
 	<p> Personal links: </p>
-	<a href="http://www.gmail.com">gmail</a><br>
-	<a href="https://drive.google.com/?authuser=0#my-drive">google docs</a><br>
-	<a href="http://www.espn.com">ESPN</a><br>
-	<a href="http://www.nytimes.com">New York Times</a><br>
-	<a href="http://www.facebook.com">Facebook</a><br>
-	<a href="http://www.pandora.com">Pandora</a><br>
+	<a href="http://www.gmail.com">				gmail		</a><br>
+	<a href="https://drive.google.com/?authuser=0#my-drive">google docs	</a><br>
+	<a href="http://www.espn.com">				ESPN		</a><br>
+	<a href="http://www.nytimes.com">			New York Times	</a><br>
+	<a href="http://www.facebook.com">			Facebook	</a><br>
+	<a href="http://www.pandora.com">			Pandora		</a><br>
 
 	<p> Professional links: </p>
 	<a href="http://community.nxp.com">NXP Community</a><br>
@@ -29,12 +29,12 @@
 	<a href="http://git.freescale.com/git/cgit.cgi/imx/uboot-imx.git/">Freescale u-boot Git</a><br>
 
 	<p> Home Network: </p>
-	<a href="http://192.168.0.1">Netgear Router</A><br>
-	<a href="http://192.168.0.254">TP-Link Access Point</A><br>
-	<a href="http://192.168.168.100">Linksys Router</A><br>
-	<a href="http://192.168.0.24">Brother Printer</A><br>
-	<a href="http://192.168.0.20">HP Printer</A><br>
-	<a href="http://192.168.0.31">Web Remote</A><br>
+	<a href="http://192.168.0.1">		Netgear Router</A><br>
+	<a href="http://192.168.0.254">		TP-Link Access Point</A><br>
+	<a href="http://192.168.168.100">	Linksys Router</A><br>
+	<a href="http://192.168.0.24">		Brother Printer</A><br>
+	<a href="http://192.168.0.20">		HP Printer</A><br>
+	<a href="http://192.168.0.31">		Web Remote</A><br>
 
 	<p> Documents: </p>
 	<?php
