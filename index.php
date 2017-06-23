@@ -52,6 +52,7 @@
 		border: 0;
 	}
 	</style>
+	<iframe style="display: block;" src="//cdnres.willyweather.com/widget/loadView.html?id=67420" width="199" height="82" frameborder="0" scrolling="no"></iframe>
 	<iframe style="display: block;" src="//cdnres.willyweather.com/widget/loadView.html?id=67373" width="199" height="82" frameborder="0" scrolling="no"></iframe>
 </div>
 
