@@ -14,8 +14,8 @@ td, th {
 	text-align:left;
 	padding:1px;
 }
-A:hover {
-	COLOR: #ff9900; TEXT-DECORATION: underline;
+A:hover, A:visited, A:link, A:active {
+	COLOR: #dc7633; TEXT-DECORATION: none;
 }
 
 .footer {
